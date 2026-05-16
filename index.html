@@ -6,11 +6,11 @@
 <title>情緒月記 — 正方格成因選取（含其他成因）</title>
 <style>
 :root{
-  --bg:#f6fbff; --card:#ffffff; --muted:#6b7280; --accent:#06b6d4;
-  --accent-2:#7c3aed; --text:#0b1220;
-  --joy:#10b981; --anx:#f59e0b; --ang:#ef4444; --sad:#3b82f6; --enn:#64748b; --disg:#6d28d9;
-  --glass: rgba(6,182,212,0.06);
-  font-family: "Noto Sans TC", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+--bg:#f6fbff; --card:#ffffff; --muted:#6b7280; --accent:#06b6d4;
+--accent-2:#7c3aed; --text:#0b1220;
+--joy:#10b981; --anx:#f59e0b; --ang:#ef4444; --sad:#3b82f6; --enn:#64748b; --disg:#6d28d9;
+--glass: rgba(6,182,212,0.06);
+font-family: "Noto Sans TC", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, #eaf6fb 100%);color:var(--text);-webkit-font-smoothing:antialiased}
@@ -30,7 +30,7 @@ label{display:block;margin-bottom:6px;font-weight:700}
 .opt.selected{border-color:var(--accent);box-shadow:0 10px 30px rgba(6,182,212,0.12);background:linear-gradient(90deg, rgba(6,182,212,0.06), rgba(124,58,237,0.03))}
 .controls{display:flex;gap:8px;align-items:center;margin-top:10px}
 button{background:var(--accent);color:#fff;border:0;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:800;box-shadow:0 6px 18px rgba(6,182,212,0.12)}
-button.ghost{background:transparent;border:1px solid rgba(11,18,32,0.06);color:var(--muted);font-weight:700;box-shadow:none}
+button.ghost{background:transparent;border:1px solid rgba(11,18,32,0.06);color:var(--muted);font-weight:700;box-shadow:none;padding:8px 10px;border-radius:8px}
 .summary{display:flex;flex-direction:column;gap:10px}
 .bar{height:14px;background:#f1f5f9;border-radius:10px;overflow:hidden;border:1px solid rgba(11,18,32,0.03)}
 .bar > i{display:block;height:100%}
@@ -54,22 +54,22 @@ td.cause{max-width:300px;white-space:normal;word-break:break-word;overflow-wrap:
 /* ---------- 正方格成因選取樣式 ---------- */
 .cause-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
 .cause-tile{
-  position:relative;
-  aspect-ratio:1/1;
-  min-height:80px;
-  border-radius:10px;
-  background:#fff;
-  border:1px solid rgba(11,18,32,0.06);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px;
-  text-align:center;
-  font-size:13px;
-  color:var(--text);
-  cursor:pointer;
-  transition:transform .12s,box-shadow .12s,border-color .12s,background .12s;
-  user-select:none;
+position:relative;
+aspect-ratio:1/1;
+min-height:80px;
+border-radius:10px;
+background:#fff;
+border:1px solid rgba(11,18,32,0.06);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:10px;
+text-align:center;
+font-size:13px;
+color:var(--text);
+cursor:pointer;
+transition:transform .12s,box-shadow .12s,border-color .12s,background .12s;
+user-select:none;
 }
 .cause-tile:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(6,182,212,0.06)}
 .cause-tile input[type="checkbox"]{position:absolute;opacity:0;pointer-events:none}
@@ -79,279 +79,283 @@ td.cause{max-width:300px;white-space:normal;word-break:break-word;overflow-wrap:
 .cause-tile input[type="text"]{font-size:13px;display:none}
 .cause-tile.selected input[type="text"]{display:block}
 @media(max-width:720px){
-  .grid{grid-template-columns:1fr;gap:12px}
-  .cause-grid{grid-template-columns:repeat(2,1fr)}
-  table{display:none}
-  #monthCards{display:block}
-  .poster{max-height:260px}
+.grid{grid-template-columns:1fr;gap:12px}
+.cause-grid{grid-template-columns:repeat(2,1fr)}
+table{display:none}
+#monthCards{display:block}
+.poster{max-height:260px}
 }
 @media(max-width:980px){
-  table{min-width:640px}
-  .poster{max-height:360px}
+table{min-width:640px}
+.poster{max-height:360px}
 }
 .hint{font-size:12px;color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div>
-      <h1>情緒月記</h1>
-    </div>
-  </header>
-  
+<header>
+<div>
+<h1>情緒月記</h1>
+</div>
+</header>
+<!-- photo
+<section class="poster-section" aria-label="海報圖示意">
+<div style="width:100%;max-width:1100px;text-align:center">
+<div style="font-weight:800;margin-bottom:6px">Inside Out 情緒海報</div>
+<div class="poster-wrap" role="img" aria-label="Inside Out 情緒海報">
+<img id="posterImg" class="poster" src="https://static.wikia.nocookie.net/disney/images/1/10/Inside_Out_2_-_But_Never_Boring.jpg/revision/latest/scale-to-width-down/1200?cb=20240905211637" alt="Inside Out 情緒海報" loading="lazy">
+<div class="poster-credit">圖片來源：Wikia / Disney</div>
+</div>
+<div class="hint" style="margin-top:8px">點擊圖片可放大檢視</div>
+</div>
+</section>
+-->
+<div class="grid">
+<!-- 左：填寫區 -->
+<section class="card" aria-labelledby="entryTitle">
+<div class="small">選擇日期（預設為今天），完成 5 題並勾選成因後按「儲存紀錄」。</div>
+<div style="margin-top:10px;">
+<label for="dateInput"><strong>日期</strong></label>
+<input id="dateInput" type="date" style="padding:10px;border-radius:8px;border:1px solid rgba(11,18,32,0.06);width:100%;max-width:220px" />
+</div>
 
-  <div class="grid">
-    <!-- 左：填寫區 -->
-    <section class="card" aria-labelledby="entryTitle">
-      <div class="small">選擇日期（預設為今天），完成 5 題並勾選成因後按「儲存紀錄」。</div>
+<form id="quizForm" style="margin-top:12px">
+<!-- Q1-Q5 -->
+<div class="q">
+<label><strong>Q1 感官超載度（聽覺）</strong></label>
+<div class="options" data-q="q1">
+<label class="opt"><input type="radio" name="q1" value="J"> J. 能自動過濾，不影響專注</label>
+<label class="opt"><input type="radio" name="q1" value="An"> An. 每個微小聲音都刺耳</label>
+<label class="opt"><input type="radio" name="q1" value="F"> F. 聲音大時會生氣</label>
+<label class="opt"><input type="radio" name="q1" value="S"> S. 聲音遙遠，提不起勁</label>
+<label class="opt"><input type="radio" name="q1" value="A"> A. 完全放空，不想管周遭</label>
+<label class="opt"><input type="radio" name="q1" value="D"> D. 聽到八卦直覺嫌棄</label>
+</div>
+</div>
 
-      <div style="margin-top:10px;">
-        <label for="dateInput"><strong>日期</strong></label>
-        <input id="dateInput" type="date" style="padding:10px;border-radius:8px;border:1px solid rgba(11,18,32,0.06);width:100%;max-width:220px" />
-      </div>
+<div class="q">
+<label><strong>Q2 認知敏銳度（閱讀）</strong></label>
+<div class="options" data-q="q2">
+<label class="opt"><input type="radio" name="q2" value="J"> J. 讀得快，抓到關鍵字</label>
+<label class="opt"><input type="radio" name="q2" value="An"> An. 讀得快但常漏字</label>
+<label class="opt"><input type="radio" name="q2" value="F"> F. 覺得題目囉嗦、不耐煩</label>
+<label class="opt"><input type="radio" name="q2" value="S"> S. 看得進去但思考卡住</label>
+<label class="opt"><input type="radio" name="q2" value="A"> A. 眼睛看著但靈魂出竅</label>
+<label class="opt"><input type="radio" name="q2" value="D"> D. 覺得題目設計不佳</label>
+</div>
+</div>
 
-      <form id="quizForm" style="margin-top:12px">
-        <!-- Q1-Q5 -->
-        <div class="q">
-          <label><strong>Q1 感官超載度（聽覺）</strong></label>
-          <div class="options" data-q="q1">
-            <label class="opt"><input type="radio" name="q1" value="J"> J. 能自動過濾，不影響專注</label>
-            <label class="opt"><input type="radio" name="q1" value="An"> An. 每個微小聲音都刺耳</label>
-            <label class="opt"><input type="radio" name="q1" value="F"> F. 聲音大時會生氣</label>
-            <label class="opt"><input type="radio" name="q1" value="S"> S. 聲音遙遠，提不起勁</label>
-            <label class="opt"><input type="radio" name="q1" value="A"> A. 完全放空，不想管周遭</label>
-            <label class="opt"><input type="radio" name="q1" value="D"> D. 聽到八卦直覺嫌棄</label>
-          </div>
-        </div>
+<div class="q">
+<label><strong>Q3 社交防禦度（被拍肩）</strong></label>
+<div class="options" data-q="q3">
+<label class="opt"><input type="radio" name="q3" value="J"> J. 自然微笑回頭，準備對話</label>
+<label class="opt"><input type="radio" name="q3" value="An"> An. 嚇一跳，心跳漏一拍</label>
+<label class="opt"><input type="radio" name="q3" value="F"> F. 身體緊繃，內心怒吼</label>
+<label class="opt"><input type="radio" name="q3" value="S"> S. 社交好累，敷衍應付</label>
+<label class="opt"><input type="radio" name="q3" value="A"> A. 假裝沒聽到，冷漠回應</label>
+<label class="opt"><input type="radio" name="q3" value="D"> D. 挑剔打量，保持距離</label>
+</div>
+</div>
 
-        <div class="q">
-          <label><strong>Q2 認知敏銳度（閱讀）</strong></label>
-          <div class="options" data-q="q2">
-            <label class="opt"><input type="radio" name="q2" value="J"> J. 讀得快，抓到關鍵字</label>
-            <label class="opt"><input type="radio" name="q2" value="An"> An. 讀得快但常漏字</label>
-            <label class="opt"><input type="radio" name="q2" value="F"> F. 覺得題目囉嗦、不耐煩</label>
-            <label class="opt"><input type="radio" name="q2" value="S"> S. 看得進去但思考卡住</label>
-            <label class="opt"><input type="radio" name="q2" value="A"> A. 眼睛看著但靈魂出竅</label>
-            <label class="opt"><input type="radio" name="q2" value="D"> D. 覺得題目設計不佳</label>
-          </div>
-        </div>
+<div class="q">
+<label><strong>Q4 時間焦慮度（對今天的感覺）</strong></label>
+<div class="options" data-q="q4">
+<label class="opt"><input type="radio" name="q4" value="J"> J. 時間掌控得很好</label>
+<label class="opt"><input type="radio" name="q4" value="An"> An. 總覺得時間不夠用</label>
+<label class="opt"><input type="radio" name="q4" value="F"> F. 覺得時間過得很慢</label>
+<label class="opt"><input type="radio" name="q4" value="S"> S. 今天漫長、無成就感</label>
+<label class="opt"><input type="radio" name="q4" value="A"> A. 沒感覺，時間跟我無關</label>
+<label class="opt"><input type="radio" name="q4" value="D"> D. 行程無聊、令人作嘔</label>
+</div>
+</div>
 
-        <div class="q">
-          <label><strong>Q3 社交防禦度（被拍肩）</strong></label>
-          <div class="options" data-q="q3">
-            <label class="opt"><input type="radio" name="q3" value="J"> J. 自然微笑回頭，準備對話</label>
-            <label class="opt"><input type="radio" name="q3" value="An"> An. 嚇一跳，心跳漏一拍</label>
-            <label class="opt"><input type="radio" name="q3" value="F"> F. 身體緊繃，內心怒吼</label>
-            <label class="opt"><input type="radio" name="q3" value="S"> S. 社交好累，敷衍應付</label>
-            <label class="opt"><input type="radio" name="q3" value="A"> A. 假裝沒聽到，冷漠回應</label>
-            <label class="opt"><input type="radio" name="q3" value="D"> D. 挑剔打量，保持距離</label>
-          </div>
-        </div>
+<div class="q">
+<label><strong>Q5 生理驅動力（食慾 / 多巴胺）</strong></label>
+<div class="options" data-q="q5">
+<label class="opt"><input type="radio" name="q5" value="J"> J. 飲食規律，正常飽足感</label>
+<label class="opt"><input type="radio" name="q5" value="An"> An. 嘴巴很饞，想靠咖啡提神</label>
+<label class="opt"><input type="radio" name="q5" value="F"> F. 想吃辛辣重口味宣洩</label>
+<label class="opt"><input type="radio" name="q5" value="S"> S. 胃口差，或空虛想吃甜食</label>
+<label class="opt"><input type="radio" name="q5" value="A"> A. 懶得吃，連點外送都麻煩</label>
+<label class="opt"><input type="radio" name="q5" value="D"> D. 對食物提不起興趣</label>
+</div>
+</div>
 
-        <div class="q">
-          <label><strong>Q4 時間焦慮度（對今天的感覺）</strong></label>
-          <div class="options" data-q="q4">
-            <label class="opt"><input type="radio" name="q4" value="J"> J. 時間掌控得很好</label>
-            <label class="opt"><input type="radio" name="q4" value="An"> An. 總覺得時間不夠用</label>
-            <label class="opt"><input type="radio" name="q4" value="F"> F. 覺得時間過得很慢</label>
-            <label class="opt"><input type="radio" name="q4" value="S"> S. 今天漫長、無成就感</label>
-            <label class="opt"><input type="radio" name="q4" value="A"> A. 沒感覺，時間跟我無關</label>
-            <label class="opt"><input type="radio" name="q4" value="D"> D. 行程無聊、令人作嘔</label>
-          </div>
-        </div>
+<!-- 成因篇：正方格選取 -->
+<div class="q" id="causesSection">
+<label><strong>第二部分：成因篇（過去數小時內，可多選）</strong></label>
+<div class="small">請勾選符合你「過去數小時內」的真實情況（可多選）</div>
 
-        <div class="q">
-          <label><strong>Q5 生理驅動力（食慾 / 多巴胺）</strong></label>
-          <div class="options" data-q="q5">
-            <label class="opt"><input type="radio" name="q5" value="J"> J. 飲食規律，正常飽足感</label>
-            <label class="opt"><input type="radio" name="q5" value="An"> An. 嘴巴很饞，想靠咖啡提神</label>
-            <label class="opt"><input type="radio" name="q5" value="F"> F. 想吃辛辣重口味宣洩</label>
-            <label class="opt"><input type="radio" name="q5" value="S"> S. 胃口差，或空虛想吃甜食</label>
-            <label class="opt"><input type="radio" name="q5" value="A"> A. 懶得吃，連點外送都麻煩</label>
-            <label class="opt"><input type="radio" name="q5" value="D"> D. 對食物提不起興趣</label>
-          </div>
-        </div>
+<div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='%2306b6d4'/><text x='12' y='16' font-size='10' text-anchor='middle' fill='white'>成因</text></svg>"
+alt="成因圖示" style="width:40px;height:40px;border-radius:6px;flex:0 0 40px">
+<div class="small" style="margin-left:4px">可多選；勾選「其他」可補充文字說明。</div>
+</div>
 
-        <!-- 成因篇：正方格選取 -->
-        <div class="q" id="causesSection">
-          <label><strong>第二部分：成因篇（過去數小時內，可多選）</strong></label>
-          <div class="small">請勾選符合你「過去數小時內」的真實情況（可多選）</div>
+<div class="cause-grid" role="group" aria-label="成因選項">
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="5-1" />
+<div class="label-text">(1) 嚴重空腹飢餓，或剛吃完高碳水暴飲暴食（食物昏迷）。</div>
+</label>
 
-          <!-- 小圖示（放在成因區塊最上方） -->
-          <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='%2306b6d4'/><text x='12' y='16' font-size='10' text-anchor='middle' fill='white'>成因</text></svg>"
-                 alt="成因圖示" style="width:40px;height:40px;border-radius:6px;flex:0 0 40px">
-            <div class="small" style="margin-left:4px">可多選；勾選「其他」可補充文字說明。</div>
-          </div>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="5-2" />
+<div class="label-text">(2) 灌了高劑量咖啡因、提神飲料或大量甜食。</div>
+</label>
 
-          <div class="cause-grid" role="group" aria-label="成因選項">
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="5-1" />
-              <div class="label-text">(1) 嚴重空腹飢餓，或剛吃完高碳水暴飲暴食（食物昏迷）。</div>
-            </label>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="5-3" />
+<div class="label-text">(3) 最近幾餐都隨便吃、缺水、甚至沒胃口跳過不吃。</div>
+</label>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="5-2" />
-              <div class="label-text">(2) 灌了高劑量咖啡因、提神飲料或大量甜食。</div>
-            </label>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="6-4" />
+<div class="label-text">(4) 已經連續高強度用腦（開會、寫報告）超過 2 小時沒中斷。</div>
+</label>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="5-3" />
-              <div class="label-text">(3) 最近幾餐都隨便吃、缺水、甚至沒胃口跳過不吃。</div>
-            </label>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="6-5" />
+<div class="label-text">(5) 長期累積睡眠負債或昨晚失眠。</div>
+</label>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="6-4" />
-              <div class="label-text">(4) 已經連續高強度用腦（開會、寫報告）超過 2 小時沒中斷。</div>
-            </label>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="6-6" />
+<div class="label-text">(6) 今天進行了大量高內耗的社交（應付奧客、討厭的同事）。</div>
+</label>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="6-5" />
-              <div class="label-text">(5) 長期累積睡眠負債或昨晚失眠。</div>
-            </label>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="7-7" />
+<div class="label-text">(7) 剛剛才放縱地連續刷了半小時以上的短影音或社群媒體。</div>
+</label>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="6-6" />
-              <div class="label-text">(6) 今天進行了大量高內耗的社交（應付奧客、討厭的同事）。</div>
-            </label>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="7-8" />
+<div class="label-text">(8) 手機通知一直跳，每幾分鐘就要點開看一次，視窗頻繁切換。</div>
+</label>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="7-7" />
-              <div class="label-text">(7) 剛剛才放縱地連續刷了半小時以上的短影音或社群媒體。</div>
-            </label>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="8-9" />
+<div class="label-text">(9) 待在密閉空間、冷氣房很久，空氣很悶、缺乏通風。</div>
+</label>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="7-8" />
-              <div class="label-text">(8) 手機通知一直跳，每幾分鐘就要點開看一次，視窗頻繁切換。</div>
-            </label>
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="8-10" />
+<div class="label-text">(10) 周遭環境太吵、太悶熱（超過26°C），或光線太過昏暗。</div>
+</label>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="8-9" />
-              <div class="label-text">(9) 待在密閉空間、冷氣房很久，空氣很悶、缺乏通風。</div>
-            </label>
+<!-- 新增：其他（可填寫） -->
+<label class="cause-tile" tabindex="0">
+<input type="checkbox" name="cause" value="other" />
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+<div class="label-text">(11) 其他（請填寫）</div>
+<input type="text" name="cause_other_text" placeholder="請描述其他成因" style="display:none;margin-top:6px;padding:6px;border-radius:8px;border:1px solid rgba(11,18,32,0.06);width:100%;max-width:160px;font-size:13px" />
+</div>
+</label>
+</div>
 
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="8-10" />
-              <div class="label-text">(10) 周遭環境太吵、太悶熱（超過26°C），或光線太過昏暗。</div>
-            </label>
+<div class="hint" style="margin-top:8px">提示：可多選；在手機上會自動調整為兩欄排列。</div>
+</div>
 
-            <!-- 新增：其他（可填寫） -->
-            <label class="cause-tile" tabindex="0">
-              <input type="checkbox" name="cause" value="other" />
-              <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-                <div class="label-text">(11) 其他（請填寫）</div>
-                <input type="text" name="cause_other_text" placeholder="請描述其他成因" style="display:none;margin-top:6px;padding:6px;border-radius:8px;border:1px solid rgba(11,18,32,0.06);width:100%;max-width:160px;font-size:13px" />
-              </div>
-            </label>
+<div class="controls">
+<button type="button" id="saveBtn">儲存紀錄</button>
+<button type="button" id="clearBtn" class="ghost">清除今日紀錄</button>
+<div style="margin-left:auto" class="hint">資料僅保存在此裝置（localStorage）</div>
+</div>
+</form>
 
-          </div>
+<div class="hint" id="lastSavedNote" style="margin-top:10px"></div>
+</section>
 
-          <div class="hint" style="margin-top:8px">提示：可多選；在手機上會自動調整為兩欄排列。</div>
-        </div>
+<!-- 右：即時結果與月度彙整 -->
+<aside class="card" aria-labelledby="summaryTitle">
+<h2 id="summaryTitle" style="margin-top:0;font-size:16px">即時結果與本月彙整</h2>
+<div class="summary">
+<div><strong>選擇統計</strong> <span class="muted" id="choiceSummary">尚未填寫</span></div>
 
-        <div class="controls">
-          <button type="button" id="saveBtn">儲存紀錄</button>
-          <button type="button" id="clearBtn" class="ghost">清除今日紀錄</button>
-          <div style="margin-left:auto" class="hint">資料僅保存在此裝置（localStorage）</div>
-        </div>
-      </form>
+<div>
+<strong>情緒百分比</strong>
+<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+<div style="min-width:140px">
+<div class="small">Joy <span id="pJ" style="float:right">0%</span></div>
+<div class="bar"><i id="bJ" style="width:0%;background:linear-gradient(90deg,var(--joy),#059669)"></i></div>
+</div>
 
-      <div class="hint" id="lastSavedNote" style="margin-top:10px"></div>
-    </section>
+<div style="min-width:140px">
+<div class="small">Anxiety <span id="pAn" style="float:right">0%</span></div>
+<div class="bar"><i id="bAn" style="width:0%;background:linear-gradient(90deg,var(--anx),#f97316)"></i></div>
+</div>
 
-    <!-- 右：即時結果與月度彙整 -->
-    <aside class="card" aria-labelledby="summaryTitle">
-      <h2 id="summaryTitle" style="margin-top:0;font-size:16px">即時結果與本月彙整</h2>
-      <div class="summary">
-        <div><strong>選擇統計</strong> <span class="muted" id="choiceSummary">尚未填寫</span></div>
+<div style="min-width:140px">
+<div class="small">Anger <span id="pF" style="float:right">0%</span></div>
+<div class="bar"><i id="bF" style="width:0%;background:linear-gradient(90deg,var(--ang),#dc2626)"></i></div>
+</div>
 
-        <div>
-          <strong>情緒百分比</strong>
-          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-            <div style="min-width:140px">
-              <div class="small">Joy <span id="pJ" style="float:right">0%</span></div>
-              <div class="bar"><i id="bJ" style="width:0%;background:linear-gradient(90deg,var(--joy),#059669)"></i></div>
-            </div>
+<div style="min-width:140px">
+<div class="small">Sadness <span id="pS" style="float:right">0%</span></div>
+<div class="bar"><i id="bS" style="width:0%;background:linear-gradient(90deg,var(--sad),#2563eb)"></i></div>
+</div>
 
-            <div style="min-width:140px">
-              <div class="small">Anxiety <span id="pAn" style="float:right">0%</span></div>
-              <div class="bar"><i id="bAn" style="width:0%;background:linear-gradient(90deg,var(--anx),#f97316)"></i></div>
-            </div>
+<div style="min-width:140px">
+<div class="small">Ennui <span id="pA" style="float:right">0%</span></div>
+<div class="bar"><i id="bA" style="width:0%;background:linear-gradient(90deg,var(--enn),#64748b)"></i></div>
+</div>
 
-            <div style="min-width:140px">
-              <div class="small">Anger <span id="pF" style="float:right">0%</span></div>
-              <div class="bar"><i id="bF" style="width:0%;background:linear-gradient(90deg,var(--ang),#dc2626)"></i></div>
-            </div>
+<div style="min-width:140px">
+<div class="small">Disgust <span id="pD" style="float:right">0%</span></div>
+<div class="bar"><i id="bD" style="width:0%;background:linear-gradient(90deg,var(--disg),#6d28d9)"></i></div>
+</div>
+</div>
+</div>
 
-            <div style="min-width:140px">
-              <div class="small">Sadness <span id="pS" style="float:right">0%</span></div>
-              <div class="bar"><i id="bS" style="width:0%;background:linear-gradient(90deg,var(--sad),#2563eb)"></i></div>
-            </div>
+<div>
+<strong>主導角色</strong>
+<div id="dominantText" style="margin-top:6px">—</div>
+</div>
 
-            <div style="min-width:140px">
-              <div class="small">Ennui <span id="pA" style="float:right">0%</span></div>
-              <div class="bar"><i id="bA" style="width:0%;background:linear-gradient(90deg,var(--enn),#64748b)"></i></div>
-            </div>
+<div>
+<strong>深度診斷提示</strong>
+<div id="diagnosis" class="muted" style="margin-top:6px">—</div>
+</div>
 
-            <div style="min-width:140px">
-              <div class="small">Disgust <span id="pD" style="float:right">0%</span></div>
-              <div class="bar"><i id="bD" style="width:0%;background:linear-gradient(90deg,var(--disg),#6d28d9)"></i></div>
-            </div>
-          </div>
-        </div>
+<hr style="border:none;border-top:1px dashed rgba(11,18,32,0.06);margin:8px 0">
 
-        <div>
-          <strong>主導角色</strong>
-          <div id="dominantText" style="margin-top:6px">—</div>
-        </div>
+<div>
+<strong>本月彙整</strong>
+<div style="display:flex;gap:12px;align-items:flex-start;margin-top:8px;flex-wrap:wrap">
+<div style="width:36%;min-width:120px">
+<canvas id="pieChart" width="220" height="220" aria-label="情緒圓餅圖" style="width:100%;height:auto;border-radius:8px"></canvas>
+</div>
 
-        <div>
-          <strong>深度診斷提示</strong>
-          <div id="diagnosis" class="muted" style="margin-top:6px">—</div>
-        </div>
+<div style="flex:1">
+<div class="muted">每日紀錄表（含成因）</div>
+<div style="margin-top:8px">
+<div class="table-responsive">
+<table id="monthTable" aria-live="polite">
+<thead><tr><th>日期</th><th>主導情緒</th><th>百分比</th><th>成因</th><th>操作</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+<div id="monthCards" aria-live="polite"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
 
-        <hr style="border:none;border-top:1px dashed rgba(11,18,32,0.06);margin:8px 0">
-
-        <div>
-          <strong>本月彙整</strong>
-          <div style="display:flex;gap:12px;align-items:flex-start;margin-top:8px;flex-wrap:wrap">
-            <div style="width:36%;min-width:120px">
-              <canvas id="pieChart" width="220" height="220" aria-label="情緒圓餅圖" style="width:100%;height:auto;border-radius:8px"></canvas>
-            </div>
-
-            <div style="flex:1">
-              <div class="muted">每日紀錄表（含成因）</div>
-              <div style="margin-top:8px">
-                <div class="table-responsive">
-                  <table id="monthTable" aria-live="polite">
-                    <thead><tr><th>日期</th><th>主導情緒</th><th>百分比</th><th>成因</th></tr></thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
-                <div id="monthCards" aria-live="polite"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </aside>
-  </div>
-
-
-
-  <div style="height:18px"></div>
-  <footer class="muted" style="text-align:center">提示：資料僅保存在此裝置，清除瀏覽器資料會遺失紀錄。</footer>
+<div style="height:18px"></div>
+<footer class="muted" style="text-align:center">提示：資料僅保存在此裝置，清除瀏覽器資料會遺失紀錄。</footer>
 </div>
 
 <!-- Lightbox -->
 <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-  <img id="lightboxImg" src="" alt="放大檢視海報">
+<img id="lightboxImg" src="" alt="放大檢視海報">
 </div>
 
 <script>
-/* ---------- 功能與互動（整合「其他成因」） ---------- */
+/* ---------- 功能與互動（修正：其他文字可儲存；Q5 選項穩定加入成因） ---------- */
 
 function formatDateISO(d){ const y=d.getFullYear(), m=('0'+(d.getMonth()+1)).slice(-2), day=('0'+d.getDate()).slice(-2); return y+'-'+m+'-'+day; }
 function monthKeyFromDate(d){ const y=d.getFullYear(), m=('0'+(d.getMonth()+1)).slice(-2); return y+'-'+m; }
@@ -362,9 +366,9 @@ const saveBtn = document.getElementById('saveBtn');
 const clearBtn = document.getElementById('clearBtn');
 const lastSavedNote = document.getElementById('lastSavedNote');
 const pEls = { J:document.getElementById('pJ'), An:document.getElementById('pAn'), F:document.getElementById('pF'),
-  S:document.getElementById('pS'), A:document.getElementById('pA'), D:document.getElementById('pD') };
+S:document.getElementById('pS'), A:document.getElementById('pA'), D:document.getElementById('pD') };
 const bEls = { J:document.getElementById('bJ'), An:document.getElementById('bAn'), F:document.getElementById('bF'),
-  S:document.getElementById('bS'), A:document.getElementById('bA'), D:document.getElementById('bD') };
+S:document.getElementById('bS'), A:document.getElementById('bA'), D:document.getElementById('bD') };
 const dominantText = document.getElementById('dominantText');
 const diagnosis = document.getElementById('diagnosis');
 const choiceSummary = document.getElementById('choiceSummary');
@@ -382,7 +386,6 @@ document.querySelectorAll('.cause-tile').forEach(tile=>{
     if(e.target.tagName.toLowerCase() === 'input') return;
     cb.checked = !cb.checked;
     tile.classList.toggle('selected', cb.checked);
-    // 若 tile 含有文字欄，顯示或隱藏
     const otherInput = tile.querySelector('input[type="text"]');
     if(otherInput) otherInput.style.display = cb.checked ? 'block' : 'none';
     updateInstantFromForm();
@@ -445,19 +448,52 @@ function calcFromAnswers(answers){
   return {counts, perc, dominant, diag};
 }
 
-/* read causes */
+/* ---------- 穩定版：讀取成因（含其他文字）並確保 Q5 選項被加入 ---------- */
 function readCausesFromForm(){
-  const checked = Array.from(quizForm.querySelectorAll('input[name="cause"]:checked')).map(i=>i.value);
+  // 讀取勾選的成因 checkbox
+  const checkedEls = Array.from(quizForm.querySelectorAll('input[name="cause"]:checked'));
+  const checked = checkedEls.map(i=>i.value);
+
   const map = {
     '5-1':'嚴重空腹或暴食','5-2':'高劑量咖啡因/甜食','5-3':'最近餐食不佳/缺水',
     '6-4':'連續高強度用腦>2小時','6-5':'睡眠負債/失眠','6-6':'大量高內耗社交',
     '7-7':'剛刷短影音超過30分鐘','7-8':'手機通知頻繁/視窗切換',
     '8-9':'密閉悶熱/缺乏通風','8-10':'環境太吵/太熱或光線昏暗','other':'其他'
   };
-  const texts = checked.map(k=>map[k] || k);
+
+  // checkbox 對應文字
+  const texts = checked.map(k => map[k] || k);
+
+  // 讀取其他文字欄（只要有輸入就保留）
   const otherEl = quizForm.querySelector('input[name="cause_other_text"]');
-  const otherText = (otherEl && otherEl.value && checked.includes('other')) ? otherEl.value.trim() : '';
-  return {codes: checked, texts, otherText};
+  const otherText = (otherEl && otherEl.value) ? otherEl.value.trim() : '';
+
+  // 如果使用者填了其他文字但忘了勾選 other，補上 checked 與 texts
+  if(otherText && !checked.includes('other')){
+    checked.push('other');
+    texts.push('其他');
+  }
+
+  // **穩定取得 Q5 的文字**：使用固定對照表（避免依賴 label.textContent）
+  const q5Map = {
+    'J':'J. 飲食規律，正常飽足感',
+    'An':'An. 嘴巴很饞，想靠咖啡提神',
+    'F':'F. 想吃辛辣重口味宣洩',
+    'S':'S. 胃口差，或空虛想吃甜食',
+    'A':'A. 懶得吃，連點外送都麻煩',
+    'D':'D. 對食物提不起興趣'
+  };
+  const q5Input = quizForm.querySelector('input[name="q5"]:checked');
+  if(q5Input && q5Map[q5Input.value]){
+    // 把 Q5 的文字加入 texts（標示為生理驅動力）
+    const q5Text = '生理驅動力：' + q5Map[q5Input.value];
+    // 避免重複加入
+    if(!texts.includes(q5Text)) texts.push(q5Text);
+    // 也把一個代碼放入 checked（方便追蹤）
+    if(!checked.includes('q5-' + q5Input.value)) checked.push('q5-' + q5Input.value);
+  }
+
+  return { codes: checked, texts, otherText };
 }
 
 /* update instant */
@@ -492,37 +528,121 @@ function updateInstantFromForm(){
   choiceSummary.title = causes.texts.length ? causes.texts.join('；') : '';
 }
 
-/* save */
+/* ---------- 儲存（支援同日多筆，加入 id 與時間） ---------- */
 saveBtn.addEventListener('click', ()=>{
   const form = new FormData(quizForm);
   const answers = {};
   for(let i=1;i<=5;i++){ const q='q'+i; const v=form.get(q); if(!v){ alert('請完成所有 5 題再儲存。'); return; } answers[q]=v; }
   const date = dateInput.value; if(!date){ alert('請選擇日期。'); return; }
-  const d = new Date(date); const key = monthKeyFromDate(d); const monthData = loadMonthData(key);
+  const d = new Date(date); const key = monthKeyFromDate(d);
+  const monthData = loadMonthData(key);
+
   const calc = calcFromAnswers(answers);
   const causes = readCausesFromForm();
-  monthData[date] = {
+
+  // 準備新紀錄物件（含唯一 id）
+  const now = Date.now();
+  const id = 'rec-' + now + '-' + Math.floor(Math.random()*10000);
+  const record = {
+    id,
+    savedAt: now,
     answers,
     counts: calc.counts,
     percentages: calc.perc,
     dominant: calc.dominant,
-    causes: causes.codes,
-    causeTexts: causes.texts,
-    otherText: causes.otherText || '',
-    savedAt: Date.now()
+    causes: causes.codes.slice(),        // array of codes
+    causeTexts: causes.texts.slice(),    // array of display texts (includes Q5 text)
+    otherText: causes.otherText || ''
   };
+
+  // 若該日尚未有陣列，建立；然後 push 新紀錄
+  if(!monthData[date] || !Array.isArray(monthData[date])) monthData[date] = [];
+  monthData[date].push(record);
+
   saveMonthData(key, monthData);
-  lastSavedNote.textContent = '已儲存：' + date + '（主導：' + (calc.dominant.join(',') || '—') + '）';
+  lastSavedNote.textContent = '已儲存：' + date + ' ' + (new Date(now)).toLocaleTimeString() + '（主導：' + (calc.dominant.join(',') || '—') + '）';
   renderMonth(key);
 });
 
-/* clear */
-clearBtn.addEventListener('click', ()=>{
-  const date = dateInput.value; if(!date) return;
-  const d = new Date(date); const key = monthKeyFromDate(d); const monthData = loadMonthData(key);
-  if(monthData[date]){ if(!confirm('確定要刪除 ' + date + ' 的紀錄？')) return; delete monthData[date]; saveMonthData(key, monthData); lastSavedNote.textContent = '已刪除：' + date; renderMonth(key); }
-  else alert('該日期沒有儲存紀錄。');
-});
+/* ---------- 刪除單筆紀錄函式 ---------- */
+function deleteRecord(key, date, recordId){
+  const monthData = loadMonthData(key);
+  if(!monthData[date] || !Array.isArray(monthData[date])) return;
+  const idx = monthData[date].findIndex(r=>r.id === recordId);
+  if(idx === -1) return;
+  if(!confirm('確定要刪除 ' + date + ' 的這筆紀錄？')) return;
+  monthData[date].splice(idx,1);
+  // 若該日已無紀錄，刪除該日期鍵
+  if(monthData[date].length === 0) delete monthData[date];
+  saveMonthData(key, monthData);
+  lastSavedNote.textContent = '已刪除：' + date + '（紀錄）';
+  renderMonth(key);
+}
+
+/* ---------- renderMonth 支援多筆紀錄與單筆刪除按鈕 ---------- */
+function renderMonth(key){
+  const monthData = loadMonthData(key);
+  monthTableBody.innerHTML = '';
+  monthCards.innerHTML = '';
+  const totals = {J:0,An:0,F:0,S:0,A:0,D:0};
+  const dates = Object.keys(monthData).sort();
+
+  dates.forEach(date=>{
+    const recs = Array.isArray(monthData[date]) ? monthData[date] : [];
+    recs.forEach(rec=>{
+      const dom = rec.dominant && rec.dominant.length ? rec.dominant[0] : (function(){ const c = rec.counts || {}; let max=-1,k='—'; Object.keys(totals).forEach(k2=>{ if((c[k2]||0)>max){ max=c[k2]||0; k=k2; }}); return k; })();
+      const percent = rec.percentages ? (rec.percentages[dom] || 0) : (rec.counts ? (rec.counts[dom]*20) : 0);
+      const map = {J:'樂樂',An:'阿焦',F:'怒怒',S:'憂憂',A:'阿廢',D:'厭厭'};
+
+      // 組合成因顯示：先用 causeTexts（若有），再加上 otherText（若有）
+      const causeTextArr = Array.isArray(rec.causeTexts) ? rec.causeTexts.slice() : [];
+      if(rec.otherText && rec.otherText.trim()){
+        // 若 causeTexts 已包含 '其他' 標記，則把具體文字附加在最後
+        const otherLabelIndex = causeTextArr.findIndex(t => t === '其他' || t.startsWith('其他：'));
+        if(otherLabelIndex !== -1){
+          causeTextArr[otherLabelIndex] = '其他：' + rec.otherText.trim();
+        } else {
+          causeTextArr.push('其他：' + rec.otherText.trim());
+        }
+      }
+      const fullCauseText = causeTextArr.length ? causeTextArr.join('；') : '無';
+
+      // table row
+      const tr = document.createElement('tr');
+      const timeStr = rec.savedAt ? ' ' + (new Date(rec.savedAt)).toLocaleTimeString() : '';
+      tr.innerHTML = '<td>'+date+timeStr+'</td><td>'+ (map[dom]||'—') +'</td><td>'+percent+'%</td><td class="cause" title="'+(fullCauseText||'無')+'">'+(fullCauseText||'無')+'</td>';
+      // 刪除按鈕 cell
+      const tdDel = document.createElement('td');
+      tdDel.style.width = '1%';
+      const delBtn = document.createElement('button');
+      delBtn.textContent = '刪除';
+      delBtn.style.marginLeft = '8px';
+      delBtn.className = 'ghost';
+      delBtn.addEventListener('click', ()=> deleteRecord(key, date, rec.id));
+      tdDel.appendChild(delBtn);
+      tr.appendChild(tdDel);
+      monthTableBody.appendChild(tr);
+
+      // 卡片顯示（行動裝置用）
+      const card = document.createElement('div'); card.className='month-card';
+      const metaTime = rec.savedAt ? ' • ' + (new Date(rec.savedAt)).toLocaleTimeString() : '';
+      card.innerHTML = '<div><strong>'+date+'</strong><div class="meta">'+ (map[dom]||'—') + metaTime +'</div></div><div class="meta" title="'+(fullCauseText||'無')+'">成因：'+(fullCauseText||'無')+'</div>';
+      const cardDel = document.createElement('div'); cardDel.style.marginTop='8px';
+      const cardDelBtn = document.createElement('button'); cardDelBtn.textContent='刪除此筆'; cardDelBtn.className='ghost';
+      cardDelBtn.addEventListener('click', ()=> deleteRecord(key, date, rec.id));
+      cardDel.appendChild(cardDelBtn);
+      card.appendChild(cardDel);
+      monthCards.appendChild(card);
+
+      // 累加 totals
+      Object.keys(totals).forEach(k=>{ totals[k] += (rec.percentages && rec.percentages[k]) ? rec.percentages[k] : ((rec.counts && rec.counts[k]) ? rec.counts[k]*20 : 0); });
+    });
+  });
+
+  const days = dates.length || 1;
+  const avg = {}; Object.keys(totals).forEach(k=> avg[k] = Math.round((totals[k]/days) * 10) / 10 );
+  drawPie(avg);
+}
 
 /* pie chart */
 function resizeCanvasToDisplaySize(canvas){
@@ -540,12 +660,13 @@ function resizeCanvasToDisplaySize(canvas){
   }
   return false;
 }
+
 function drawPie(dataMap){
   resizeCanvasToDisplaySize(pieCanvas);
   const entries = Object.entries(dataMap);
   const total = entries.reduce((s,[_k,v])=>s+v,0) || 1;
   const colors = {J:['#34d399','#059669'],An:['#f59e0b','#f97316'],F:['#fb7185','#dc2626'],
-    S:['#60a5fa','#2563eb'],A:['#94a3b8','#64748b'],D:['#a78bfa','#6d28d9']};
+  S:['#60a5fa','#2563eb'],A:['#94a3b8','#64748b'],D:['#a78bfa','#6d28d9']};
   const cx = pieCanvas.width/2/(window.devicePixelRatio||1), cy = pieCanvas.height/2/(window.devicePixelRatio||1), r = Math.min(cx,cy)-6;
   pieCtx.clearRect(0,0,pieCanvas.width/(window.devicePixelRatio||1),pieCanvas.height/(window.devicePixelRatio||1));
   let start = -Math.PI/2;
@@ -562,89 +683,39 @@ function drawPie(dataMap){
   pieCtx.fillText('本月情緒分布', cx, cy+4);
 }
 
-/* render month */
-function renderMonth(key){
-  const monthData = loadMonthData(key);
-  monthTableBody.innerHTML = '';
-  monthCards.innerHTML = '';
-  const totals = {J:0,An:0,F:0,S:0,A:0,D:0};
-  const rows = Object.keys(monthData).sort();
-  rows.forEach(date=>{
-    const rec = monthData[date];
-    const dom = rec.dominant && rec.dominant.length ? rec.dominant[0] : (function(){ const c = rec.counts || {}; let max=-1,k='—'; Object.keys(totals).forEach(k2=>{ if((c[k2]||0)>max){ max=c[k2]||0; k=k2; }}); return k; })();
-    const percent = rec.percentages ? (rec.percentages[dom] || 0) : (rec.counts ? (rec.counts[dom]*20) : 0);
-    const map = {J:'樂樂',An:'阿焦',F:'怒怒',S:'憂憂',A:'阿廢',D:'厭厭'};
-    const causeText = (rec.causeTexts && rec.causeTexts.length) ? rec.causeTexts.join('；') : '';
-    const fullCauseText = (rec.otherText && rec.otherText.length) ? (causeText ? (causeText + '；其他：' + rec.otherText) : ('其他：' + rec.otherText)) : (causeText || '');
-    const tr = document.createElement('tr');
-    tr.innerHTML = '<td>'+date+'</td><td>'+ (map[dom]||'—') +'</td><td>'+percent+'%</td><td class="cause" title="'+(fullCauseText||'無')+'">'+(fullCauseText||'無')+'</td>';
-    monthTableBody.appendChild(tr);
-    const card = document.createElement('div'); card.className='month-card';
-    card.innerHTML = '<div><strong>'+date+'</strong><div class="meta">'+ (map[dom]||'—') +' • '+percent+'%</div></div><div class="meta" title="'+(fullCauseText||'無')+'">成因：'+(fullCauseText||'無')+'</div>';
-    monthCards.appendChild(card);
-    Object.keys(totals).forEach(k=>{ totals[k] += (rec.percentages && rec.percentages[k]) ? rec.percentages[k] : ((rec.counts && rec.counts[k]) ? rec.counts[k]*20 : 0); });
-  });
-  const days = rows.length || 1;
-  const avg = {}; Object.keys(totals).forEach(k=> avg[k] = Math.round((totals[k]/days) * 10) / 10 );
-  drawPie(avg);
-}
-
 /* date change load */
 dateInput.addEventListener('change', ()=>{
-  const d = new Date(dateInput.value); const key = monthKeyFromDate(d); const monthData = loadMonthData(key);
+  const d = new Date(dateInput.value); const key = monthKeyFromDate(d);
+  const monthData = loadMonthData(key);
   const rec = monthData[dateInput.value];
+  // 清除表單選取樣式（不會自動填入舊紀錄）
   document.querySelectorAll('label.opt').forEach(l=>l.classList.remove('selected'));
-  quizForm.reset();
-  // reset cause tiles visual
-  document.querySelectorAll('.cause-tile').forEach(t=>{
-    t.classList.remove('selected');
-    const cb = t.querySelector('input[type="checkbox"]');
-    if(cb) cb.checked = false;
-    const otherInput = t.querySelector('input[type="text"]');
-    if(otherInput) otherInput.style.display = 'none';
-  });
-  if(rec && rec.answers){
-    Object.entries(rec.answers).forEach(([q,v])=>{
-      const input = quizForm.querySelector('[name="'+q+'"][value="'+v+'"]');
-      if(input){ input.checked = true; const lab = input.closest('label.opt'); if(lab) lab.classList.add('selected'); }
-    });
-    document.querySelectorAll('input[name="cause"]').forEach(cb=>cb.checked=false);
-    if(rec.causes && Array.isArray(rec.causes)){
-      rec.causes.forEach(code=>{
-        const el = quizForm.querySelector('input[name="cause"][value="'+code+'"]');
-        if(el){ el.checked = true; const tile = el.closest('.cause-tile'); if(tile) tile.classList.add('selected'); const otherInput = tile.querySelector('input[type="text"]'); if(otherInput) otherInput.style.display = el.checked ? 'block' : 'none'; }
-      });
-    }
-    // 恢復其他文字
-    if(rec.otherText){
-      const otherEl = quizForm.querySelector('input[name="cause_other_text"]');
-      const otherCb = quizForm.querySelector('input[name="cause"][value="other"]');
-      if(otherEl && otherCb && otherCb.checked){
-        otherEl.value = rec.otherText;
-        otherEl.style.display = 'block';
-      }
-    } else {
-      const otherEl = quizForm.querySelector('input[name="cause_other_text"]');
-      if(otherEl) otherEl.style.display = 'none';
-    }
-    lastSavedNote.textContent = '載入已儲存紀錄：' + dateInput.value;
-  } else lastSavedNote.textContent = '';
-  updateInstantFromForm(); renderMonth(key);
+  document.querySelectorAll('.cause-tile').forEach(t=>{ t.classList.remove('selected'); const cb = t.querySelector('input[type="checkbox"]'); if(cb) cb.checked = false; const otherInput = t.querySelector('input[type="text"]'); if(otherInput) otherInput.style.display = 'none'; });
+  updateInstantFromForm();
+  renderMonth(key);
 });
 
-/* init */
+/* clear today's all records */
+clearBtn.addEventListener('click', ()=>{
+  const date = dateInput.value; if(!date) return;
+  const d = new Date(date); const key = monthKeyFromDate(d); const monthData = loadMonthData(key);
+  if(monthData[date]){
+    if(!confirm('確定要刪除 ' + date + ' 的紀錄？')) return;
+    delete monthData[date];
+    saveMonthData(key, monthData);
+    lastSavedNote.textContent = '已刪除：' + date;
+    renderMonth(key);
+  } else alert('該日期沒有儲存紀錄。');
+});
+
+/* initial render for current month */
 (function init(){
-  const today = new Date();
-  const first = new Date(today.getFullYear(), today.getMonth(), 1);
-  const last = new Date(today.getFullYear(), today.getMonth()+1, 0);
-  dateInput.min = formatDateISO(first);
-  dateInput.max = formatDateISO(last);
-  renderMonth(monthKeyFromDate(today));
-  quizForm.addEventListener('change', updateInstantFromForm);
   updateInstantFromForm();
+  const key = monthKeyFromDate(new Date(dateInput.value));
+  renderMonth(key);
 })();
 
-/* lightbox */
+/* poster lightbox */
 const posterImg = document.getElementById('posterImg');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
@@ -653,20 +724,8 @@ posterImg && posterImg.addEventListener('click', ()=>{
   lightbox.classList.add('show');
   lightbox.setAttribute('aria-hidden','false');
 });
-lightbox.addEventListener('click', (e)=>{
-  if(e.target === lightbox || e.target === lightboxImg){
-    lightbox.classList.remove('show');
-    lightbox.setAttribute('aria-hidden','true');
-    lightboxImg.src = '';
-  }
-});
-window.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape'){
-    lightbox.classList.remove('show');
-    lightbox.setAttribute('aria-hidden','true');
-    lightboxImg.src = '';
-  }
-});
+lightbox.addEventListener('click', ()=>{ lightbox.classList.remove('show'); lightbox.setAttribute('aria-hidden','true'); });
+
 </script>
 </body>
 </html>
